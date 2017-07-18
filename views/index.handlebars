@@ -1,0 +1,73 @@
+<div class="row" ng-controller="mainCtrl">
+    <div class="panel col-md-12" ng-controller="formCtrl " ng-show="isNewLetter ">
+        <form name="myForm " novalidate ng-submit="addNewEmail(NewEmail)">
+            <div class="well ">
+
+                <div class="form-group ">
+                    <label>Email:</label>
+                    <input name="userEmail " type="email " class="form-control " required ng-model="NewEmail.emailTo">
+                    <div class="error " ng-show="myForm.userEmail.$invalid && myForm.userEmail.$dirty ">
+                        <span ng-bind="getError(myForm.userEmail.$error) "></span>
+                    </div>
+
+                </div>
+                <div class="form-group ">
+                    <label>Subject:</label>
+                    <input name="Subject " type="text " class="form-control " required ng-model="NewEmail.subject ">
+                    <div class="error " ng-show="myForm.userEmail.$invalid && myForm.userEmail.$dirty ">
+                        <span ng-bind="getError(myForm.userEmail.$error) "></span>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <textarea name="comment " cols="42 " rows="3 " required ng-model="NewEmail.message "></textarea>
+                </div>
+                <div class="form-group well ">
+                    <button type="submit " class="btn btn-primary " ng-disabled="myForm.$invalid ">
+                        Send
+                    </button>
+                    <button class="btn btn-primary " ng-click="cancelLetter() ">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+    <div class="col-md-12 panel-primary" ng-hide="isNewLetter">
+        <div class="well ">
+            <button class="btn btn-primary " ng-click="creatLetter() ">
+                Creat email
+            </button>
+            <button class="btn btn-primary " ng-click="getAllEmails() ">
+                Get all emails
+            </button>
+            <button class="btn btn-primary " ng-click="deleteEmails() ">
+                Delete emails
+            </button>
+
+        </div>
+        <div class="panel-heading ">
+            <div class="panel-title ">
+                <h3>
+                    All sent letters
+                    <span class="label label-info" ng-bind="emails.length">
+                </span>
+                </h3>
+            </div>
+        </div>
+
+        <table class="table ">
+            <tbody>
+            <tr ng-repeat="email in emails ">
+                <td ng-bind="email.emailTo"></td>
+                <td ng-bind="email.subject"></td>
+                <td ng-bind="email.message"></td>
+                <td><input type="checkbox" ng-model="email.delete"/> delete</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
