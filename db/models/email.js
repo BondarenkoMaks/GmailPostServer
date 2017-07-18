@@ -1,5 +1,5 @@
-const mongoose = require("../../db").mongoose;
-
+const mongoose = require("db").mongoose;
+//model for save emails
 const emailSchema = mongoose.Schema({
     subject: {
         type: String
@@ -12,9 +12,8 @@ const emailSchema = mongoose.Schema({
     },
     emailFrom: {
         type: String
-    }
-    //,
-   // createdAt  : {type : Date, default : Date.now}
+    },
+    createdAt  : {type : Date, default : Date.now}
 });
 
 let Email = module.exports = mongoose.model("Email", emailSchema);

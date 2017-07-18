@@ -1,3 +1,4 @@
+// use  passport-local authorization
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const express = require("express");

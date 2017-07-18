@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
-const mongoose = require("../../db").mongoose;
+const mongoose = require("db").mongoose;
 
-
+//model for save users
 const UserSchema = mongoose.Schema({
     username: {
         type: String
@@ -16,12 +16,6 @@ const UserSchema = mongoose.Schema({
     },
     password: {
         type: String
-    },
-    google: {
-        id: String,
-        token: String,
-        email: String,
-        name: String
     }
 });
 

@@ -9,9 +9,10 @@ const User = require("db").User;
 
 module.exports.up = function (io) {
     'use strict';
-    module.exports.io = io; // экспортируем сервер сокетов
+    module.exports.io = io; // export socket server
     io.set('origins', 'localhost:*');
    // io.set('logger', logger);
+
     io.use(function(socket, next) {
         let handshake = socket.request;
         handshake.cookies = cookie.parse(handshake.headers.cookie || '');

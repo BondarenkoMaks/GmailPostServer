@@ -1,5 +1,5 @@
 <div class="row" ng-controller="mainCtrl">
-    <div class="panel col-md-12" ng-controller="formCtrl " ng-show="isNewLetter ">
+    <div class="panel col-md-offset-4 col-md-4 col-md-offset-4" ng-controller="formCtrl " ng-show="isNewLetter ">
         <form name="myForm " novalidate ng-submit="addNewEmail(NewEmail)">
             <div class="well ">
 
@@ -63,6 +63,7 @@
                 <td ng-bind="email.emailTo"></td>
                 <td ng-bind="email.subject"></td>
                 <td ng-bind="email.message"></td>
+                <td ng-bind="email.createdAt"></td>
                 <td><input type="checkbox" ng-model="email.delete"/> delete</td>
             </tr>
             </tbody>

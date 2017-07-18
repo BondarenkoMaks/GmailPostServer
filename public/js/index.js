@@ -1,5 +1,6 @@
 let socket = io.connect('http://localhost:3200');
-let apiFront = {
+//create object for work with socket API
+let socketApi = {
     addEmail: function (email) {
         return new Promise((resolve, reject) => {
             socket.emit('addEmail', JSON.stringify(email),  (answer)=> {
@@ -41,13 +42,14 @@ let apiFront = {
     }
 };
 
-app = angular.module("Post", []);
+//////////////////////////////////////////////////
+app = angular.module("Post", []);// initialization  angular app
 app.controller("mainCtrl", function ($scope) {
 
     $scope.emails = [];
 
     $scope.getAllEmails = function () {
-        apiFront.GetAllEmails()
+        socketApi.GetAllEmails()
             .then(
             (arr) => {
                 $scope.emails = arr;
@@ -61,7 +63,7 @@ app.controller("mainCtrl", function ($scope) {
         let deleteEmails = $scope.emails.filter((el) => {
             return el.delete;
         });
-        apiFront.deleteEmails(deleteEmails).
+        socketApi.deleteEmails(deleteEmails).
             then(() => {
             $scope.emails = $scope.emails.filter((el) => {
                 return !el.delete;
@@ -96,7 +98,7 @@ app.controller("formCtrl", function ($scope) {
             message: ""
         };
 
-        apiFront.addEmail(Email)
+        socketApi.addEmail(Email)
             .then((newEmail) => {
                     $scope.$apply(function () {
                         $scope.emails.push(newEmail);
